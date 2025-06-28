@@ -30,7 +30,7 @@ export default function Navbar() {
           </span>
         </div>
 
-        <nav className="hidden md:flex h-full space-x-2 font-medium text-[16px] leading-[24px] text-[#0F0C1B]">
+        <nav className="hidden lg:flex h-full space-x-2 font-medium text-[16px] leading-[24px] text-[#0F0C1B]">
           {[
             { href: "#", label: "Marketplace" },
             { href: "/my-website", label: "My websites" },
@@ -52,7 +52,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center space-x-4 text-gray-400">
+        <div className="hidden lg:flex items-center space-x-4 text-gray-400">
           <WalletMinimal
             size={24}
             className="cursor-pointer hover:text-black"
@@ -63,7 +63,7 @@ export default function Navbar() {
         </div>
         <Button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-gray-700"
+          className="lg:hidden text-gray-700"
           variant="ghost"
           size="icon"
         >
@@ -72,7 +72,7 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden px-4 pb-4">
+        <div className="lg:hidden px-4 pb-4">
           <nav className="flex flex-col space-y-2 mt-2 font-medium text-[16px] text-[#0F0C1B]">
             {[
               { href: "#", label: "Marketplace" },

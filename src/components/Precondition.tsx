@@ -8,17 +8,21 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
 import { Button } from "./ui/button";
+import { useFormContext } from "react-hook-form";
 
 export default function Precondition() {
-  const [accepted, setAccepted] = useState(false);
-  const [expanded, setExpanded] = useState(false);
+  const { watch, setValue } = useFormContext();
+  const accepted = watch("preconditionAccepted");
+  const expanded = watch("preconditionExpanded");
+
+  const setExpanded = (value: boolean) =>
+    setValue("preconditionExpanded", value);
 
   const Status = () => {
     if (accepted && !expanded) {
@@ -80,7 +84,7 @@ export default function Precondition() {
             ) : (
               <Button
                 className="w-[156px] h-[36px] rounded-lg p-[10px] gap-[10px] flex items-center bg-[#613FDD] my-6"
-                onClick={() => setAccepted(true)}
+                onClick={() => setValue("preconditionAccepted", true)}
               >
                 Accept
               </Button>

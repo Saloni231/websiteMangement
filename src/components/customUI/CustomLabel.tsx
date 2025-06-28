@@ -1,10 +1,10 @@
-import { Label } from "@radix-ui/react-label";
+import { Label } from "../ui/label";
 
 type LabelProps = {
   label: string;
 };
 
-export default function CustomLable({ label }: LabelProps) {
+export default function CustomLabel({ label }: LabelProps) {
   return (
     <Label
       htmlFor="website"
