@@ -14,6 +14,7 @@ import {
 } from "../ui/command";
 import { ChevronDown, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useFormContext } from "react-hook-form";
 
 export type Option = {
   language: string;
@@ -39,6 +40,8 @@ export default function CustomSelectBox({
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
+  const { setValue } = useFormContext();
+
   useEffect(() => {
     const match =
       type === "language"
@@ -52,6 +55,9 @@ export default function CustomSelectBox({
     setSelectedOption(option);
     setOpen(false);
     onChange(type === "language" ? option.language : option.name);
+    if (type === "country") {
+      setValue("flag", option.flag);
+    }
   };
 
   return (

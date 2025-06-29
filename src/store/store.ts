@@ -1,9 +1,10 @@
 import { create } from "zustand";
 
-interface WebsiteFormData {
+export interface WebsiteFormData {
   website: string;
   language: string;
   country: string;
+  flag: string;
   description: string;
   categories?: string[];
   isOwner?: boolean;
@@ -63,10 +64,14 @@ interface WebsiteFormData {
 interface Store {
   data: WebsiteFormData[];
   addData: (newData: WebsiteFormData) => void;
+  selectedWebsite: WebsiteFormData | null;
+  setSelectedWebsite: (website: WebsiteFormData | null) => void;
 }
 
 export const useStore = create<Store>((set) => ({
   data: [],
   addData: (newData: WebsiteFormData) =>
     set((state) => ({ data: [...state.data, newData] })),
+  selectedWebsite: null,
+  setSelectedWebsite: (website) => set({ selectedWebsite: website }),
 }));

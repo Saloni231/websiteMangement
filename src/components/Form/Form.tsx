@@ -1,19 +1,21 @@
 "use client";
 
-import ArticleSpecification from "@/components/ArticleSpecification";
-import CreateOffer from "@/components/CreateOffer";
-import Precondition from "@/components/Precondition";
+import ArticleSpecification from "@/components/Form/ArticleSpecification";
+import CreateOffer from "@/components/Form/CreateOffer";
+import Precondition from "@/components/Form/Precondition";
 import { Button } from "@/components/ui/button";
-import WebsiteDetail, { countryType } from "@/components/WebsiteDetail";
+import WebsiteDetail from "@/components/Form/WebsiteDetail";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { websiteFormSchema, WebsiteFormSchema } from "../store/formSchema";
+import { websiteFormSchema, WebsiteFormSchema } from "../../store/formSchema";
 import { useStore } from "@/store/store";
+import { redirect } from "next/navigation";
 
 const formInitialValue: WebsiteFormSchema = {
   website: "",
   language: "",
   country: "",
+  flag: "",
   description: "",
   categories: [],
   isOwner: false,
@@ -57,16 +59,12 @@ const formInitialValue: WebsiteFormSchema = {
   },
 };
 
-interface FormProps {
-  countries: countryType[];
-}
-
-export default function Form({ countries }: FormProps) {
-  const { data, addData } = useStore();
+export default function Form() {
+  const { addData, selectedWebsite, data } = useStore();
 
   const form = useForm<WebsiteFormSchema>({
     resolver: zodResolver(websiteFormSchema),
-    defaultValues: formInitialValue,
+    defaultValues: selectedWebsite || formInitialValue,
     mode: "onSubmit",
   });
 
@@ -76,33 +74,40 @@ export default function Form({ countries }: FormProps) {
   } = form;
 
   const onSubmit = (newData: WebsiteFormSchema) => {
-    console.log("Form submitted", newData);
-    addData(newData);
+    if (selectedWebsite) {
+      const index = data.findIndex(
+        (item) => item.website === selectedWebsite.website
+      );
+      useStore.getState().data[index] = newData;
+    } else {
+      addData(newData);
+    }
+    redirect("/my-website");
   };
 
-  console.log(data);
-
   return (
-    <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Precondition />
-        {errors.preconditionAccepted?.message && (
-          <span className="text-red-500 text-sm">
-            {errors.preconditionAccepted?.message}
-          </span>
-        )}
-        <WebsiteDetail countries={countries} />
-        <CreateOffer />
-        <ArticleSpecification />
-        <div className="flex justify-end">
-          <Button
-            type="submit"
-            style={{ backgroundColor: "#613FDD", color: "#fff" }}
-          >
-            Add Website
-          </Button>
-        </div>
-      </form>
-    </FormProvider>
+    <>
+      <h2 className="mx-6 font-semibold text-2xl lg:text-3xl">
+        {selectedWebsite ? "Edit Website" : "Add a website"}
+      </h2>
+      <FormProvider {...form}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Precondition />
+          {errors.preconditionAccepted?.message && (
+            <span className="text-red-500 text-sm">
+              {errors.preconditionAccepted?.message}
+            </span>
+          )}
+          <WebsiteDetail />
+          <CreateOffer />
+          <ArticleSpecification />
+          <div className="flex justify-end">
+            <Button type="submit" className="bg-[#613FDD] text-[#fff]">
+              {selectedWebsite ? "Edit Website" : "Add a website"}
+            </Button>
+          </div>
+        </form>
+      </FormProvider>
+    </>
   );
 }

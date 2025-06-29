@@ -18,6 +18,7 @@ export const websiteFormSchema = z.object({
     }),
   language: z.string().min(1, "Primary Language is required"),
   country: z.string().min(1, "Country is required"),
+  flag: z.string(),
   description: z.string().min(1, "Description is required"),
   categories: z.array(z.string()).optional(),
   isOwner: z.boolean().optional(),

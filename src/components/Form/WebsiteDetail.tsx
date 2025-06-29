@@ -1,16 +1,17 @@
 "use client";
 
 import { useFormContext, Controller } from "react-hook-form";
-import CustomLabel from "./customUI/CustomLabel";
-import CustomSelectBox from "./customUI/CustomSelectBox";
-import { Card } from "./ui/card";
-import { Checkbox } from "./ui/checkbox";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
-import ComponentHeading from "./customUI/CompontHeading";
+import CustomLabel from "../customUI/CustomLabel";
+import CustomSelectBox from "../customUI/CustomSelectBox";
+import { Card } from "../ui/card";
+import { Checkbox } from "../ui/checkbox";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
+import ComponentHeading from "../customUI/CompontHeading";
 import { useMemo } from "react";
 import { WebsiteFormSchema } from "@/store/formSchema";
+import { countryType, useCountryStore } from "@/store/countryData";
 
 const categories = [
   "Animals / Pets",
@@ -52,17 +53,7 @@ const categories = [
   "Shopping",
 ];
 
-export type countryType = {
-  language: string;
-  flag: string;
-  name: string;
-};
-
-interface WebsiteDetailProps {
-  countries: countryType[];
-}
-
-export default function WebsiteDetail({ countries }: WebsiteDetailProps) {
+export default function WebsiteDetail() {
   const {
     register,
     setValue,
@@ -70,6 +61,8 @@ export default function WebsiteDetail({ countries }: WebsiteDetailProps) {
     control,
     formState: { errors },
   } = useFormContext<WebsiteFormSchema>();
+
+  const { countries } = useCountryStore();
 
   const selectedCategory = watch("categories") || [];
   const isOwner = watch("isOwner") || false;

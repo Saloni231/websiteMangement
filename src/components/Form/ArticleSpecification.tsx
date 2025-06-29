@@ -1,12 +1,12 @@
 "use client";
 
 import { Controller, useFormContext, useWatch } from "react-hook-form";
-import ComponentHeading from "./customUI/CompontHeading";
-import CustomRadioItem from "./customUI/CustomRadioItem";
-import { Card } from "./ui/card";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
+import ComponentHeading from "../customUI/CompontHeading";
+import CustomRadioItem from "../customUI/CustomRadioItem";
+import { Card } from "../ui/card";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
 import { WebsiteFormSchema } from "@/store/formSchema";
 
 export default function ArticleSpecification() {
@@ -67,6 +67,13 @@ export default function ArticleSpecification() {
                         wordLimitErrors &&
                         "border-red-500"
                       }`}
+                      value={field.value || ""}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        const numericValue =
+                          value === "" ? undefined : parseFloat(value);
+                        field.onChange(numericValue);
+                      }}
                     />
                   )}
                 />
@@ -90,6 +97,13 @@ export default function ArticleSpecification() {
                         wordLimitErrors &&
                         "border-red-500"
                       }`}
+                      value={field.value || ""}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        const numericValue =
+                          value === "" ? undefined : parseFloat(value);
+                        field.onChange(numericValue);
+                      }}
                     />
                   )}
                 />
@@ -156,6 +170,13 @@ export default function ArticleSpecification() {
                         linkLimitErrors &&
                         "border-red-500"
                       }`}
+                      value={field.value || ""}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        const numericValue =
+                          value === "" ? undefined : parseFloat(value);
+                        field.onChange(numericValue);
+                      }}
                     />
                   )}
                 />
@@ -178,6 +199,13 @@ export default function ArticleSpecification() {
                         linkLimitErrors &&
                         "border-red-500"
                       }`}
+                      value={field.value || ""}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        const numericValue =
+                          value === "" ? undefined : parseFloat(value);
+                        field.onChange(numericValue);
+                      }}
                     />
                   )}
                 />

@@ -6,7 +6,7 @@ import { Manrope } from "next/font/google";
 import Link from "next/link";
 import { Bolt, ShoppingBag, User, WalletMinimal, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -42,7 +42,7 @@ export default function Navbar() {
               key={label}
               href={href}
               className={`h-full flex items-center justify-center px-2 ${
-                path === href
+                path.includes(href)
                   ? "text-[#613FDD] bg-[#F4F1FF] border-b-2 border-[#613FDD] font-semibold"
                   : "hover:text-[#613FDD]"
               }`}

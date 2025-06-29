@@ -1,16 +1,16 @@
 "use client";
 
 import { TabsContent } from "@radix-ui/react-tabs";
-import { Card } from "./ui/card";
-import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
-import PriceInput from "./customUI/PriceInput";
-import CustomLabel from "./customUI/CustomLabel";
+import { Card } from "../ui/card";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import PriceInput from "../customUI/PriceInput";
+import CustomLabel from "../customUI/CustomLabel";
 import { useFormContext, Controller, useWatch } from "react-hook-form";
-import { Checkbox } from "./ui/checkbox";
-import Offers from "./customUI/Offers";
-import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
-import ComponentHeading from "./customUI/CompontHeading";
+import { Checkbox } from "../ui/checkbox";
+import Offers from "../customUI/Offers";
+import { Textarea } from "../ui/textarea";
+import { Label } from "../ui/label";
+import ComponentHeading from "../customUI/CompontHeading";
 import { WebsiteFormSchema } from "@/store/formSchema";
 
 const TabsArr = [

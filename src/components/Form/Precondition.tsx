@@ -5,13 +5,13 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "./ui/collapsible";
-import { Button } from "./ui/button";
+} from "../ui/collapsible";
+import { Button } from "../ui/button";
 import { useFormContext } from "react-hook-form";
 import { WebsiteFormSchema } from "@/store/formSchema";
 import { useState, useEffect } from "react";
