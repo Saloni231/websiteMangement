@@ -93,7 +93,7 @@ export default function WebsiteDetail() {
             <Input
               {...register("website")}
               placeholder="Website URL"
-              className={`font-normal text-[14px] leading-[20px] tracking-[0px] placeholder:text-[#0F0C1B66] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
+              className={`font-medium text-[14px] leading-[20px] tracking-normal placeholder:text-[#0F0C1B66] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
                 errors.website?.message ? "border-red-500" : ""
               }`}
             />
@@ -155,7 +155,7 @@ export default function WebsiteDetail() {
             {categories.map((category) => (
               <Label
                 key={category}
-                className="flex items-center gap-2 cursor-pointer text-[14px] text-[#0F0C1B99]"
+                className="flex items-center gap-2 cursor-pointer text-[14px] text-[#0F0C1B99] font-medium leading-[20px] tracking-normal"
               >
                 <Checkbox
                   checked={selectedCategory.includes(category)}
@@ -173,7 +173,7 @@ export default function WebsiteDetail() {
           <Textarea
             {...register("description")}
             placeholder="Description"
-            className={`w-full lg:w-[856px] h-24 text-[14px] placeholder:text-[#0F0C1B66] border-[#EAEAEA] font-normal  leading-[20px] tracking-[0px] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
+            className={`w-full h-32 lg:w-[856px] font-medium text-[14px] leading-[20px] tracking-normal placeholder:text-[#0F0C1B99] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
               errors.description?.message && "border-red-500"
             }`}
           />
@@ -190,7 +190,7 @@ export default function WebsiteDetail() {
             onCheckedChange={() => setValue("isOwner", !isOwner)}
             className="h-5 w-5 data-[state=checked]:bg-[#613FDD] data-[state=checked]:border-transparent hover:ring-4 hover:ring-[#613FDD1C] hover:bg-[#613FDD1C] border-[#BABABA]"
           />
-          <Label className="text-[14px] text-[#09090B]">
+          <Label className="text-[#0F0C1B] font-medium text-[14px] leading-[20px] tracking-normal">
             I am the owner of the website
           </Label>
         </div>

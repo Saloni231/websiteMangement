@@ -86,7 +86,7 @@ export default function CustomSelectBox({
                 height={15}
               />
             )}
-            <span className="text-sm text-[#6B7280]">
+            <span className="text-[#0F0C1B66] font-medium text-[14px] leading-[20px] tracking-normal">
               {selectedOption
                 ? type === "language"
                   ? selectedOption.language

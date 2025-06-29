@@ -29,16 +29,16 @@ export default function CreateOffer() {
     useWatch({ control, name: "offers.greyNicheOffer.samePrice" }) || false;
 
   return (
-    <div className="w-full lg:w-[1060px]">
+    <div>
       <ComponentHeading heading="Create offer" />
-      <Card className="shadow-xs border-none mt-6 p-6">
+      <Card className="shadow-xs border-none mt-6 p-6 w-full lg:w-[1060px]">
         <Tabs defaultValue="NormalOffer" className="w-full relative">
           <TabsList className="flex h-[48px] w-full rounded-none justify-start border-b bg-transparent p-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
             {TabsArr.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="shrink-0 min-w-max px-4 pb-3 pt-2 font-semibold text-sm md:text-base border-b-2 border-transparent data-[state=active]:border-b-[#613FDD] data-[state=active]:text-foreground rounded-none"
+                className="font-semibold text-[18px] leading-[28px] text-[#0F0C1B66] data-[state=active]:text-[#0F0C1B] tracking-normal shrink-0 min-w-max px-4 pb-3 pt-2 md:text-base border-b-2 border-transparent data-[state=active]:border-b-[#613FDD] rounded-none"
               >
                 {tab.label}
               </TabsTrigger>
@@ -99,7 +99,7 @@ export default function CreateOffer() {
               </div>
               <Label
                 htmlFor="SamePrice"
-                className="text-sm font-medium text-[#0F0C1B]"
+                className="font-medium text-[14px] leading-[20px] tracking-normal text-[#0F0C1B99]"
               >
                 I offer same price for all grey niches
               </Label>

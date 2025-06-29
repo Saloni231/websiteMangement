@@ -17,7 +17,7 @@ export default function CustomRadioItem({
 
   return (
     <div className="flex flex-col space-y-1 gap-2 w-full">
-      <Label className="text-[#0F0C1B] text-[14px] font-[400] leading-[20px]">
+      <Label className="text-[#0F0C1B] font-normal text-[14px] leading-[20px] tracking-[0.25px]">
         {question}
       </Label>
       <Controller
@@ -38,7 +38,7 @@ export default function CustomRadioItem({
                 />
                 <Label
                   htmlFor={`${name}-${value}`}
-                  className="text-[14px] font-[400] text-[#0F0C1B99] transition-colors duration-200 
+                  className="font-normal text-[14px] leading-[20px] tracking-[0.25px] text-[#0F0C1B99] transition-colors duration-200 
                     data-[state=checked]:text-[#0F0C1B] data-[state=checked]:font-medium"
                 >
                   {value}

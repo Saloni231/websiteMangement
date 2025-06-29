@@ -1,12 +1,11 @@
 import { z } from "zod";
 
-const nonNegativePrice = z
-  .number({ required_error: "Price is required" })
-  .min(1, "Price must be non-negative");
-
 const greyNicheCategorySchema = z.object({
-  guestPost: z.number().optional(),
-  linkInsertion: z.number().optional(),
+  guestPost: z.number().min(0, { message: "Must be non-negative" }).optional(),
+  linkInsertion: z
+    .number()
+    .min(0, { message: "Must be non-negative" })
+    .optional(),
 });
 
 export const websiteFormSchema = z.object({
@@ -24,208 +23,31 @@ export const websiteFormSchema = z.object({
   isOwner: z.boolean().optional(),
   offers: z.object({
     normal: z.object({
-      guestPost: nonNegativePrice,
-      linkInsertion: nonNegativePrice,
+      guestPost: z
+        .number()
+        .min(0, { message: "Must be non-negative" })
+        .optional(),
+      linkInsertion: z
+        .number()
+        .min(0, { message: "Must be non-negative" })
+        .optional(),
     }),
-    greyNicheOffer: z
-      .object({
-        samePrice: z.boolean().optional(),
-        price: z.number().optional(),
-        categories: z
-          .object({
-            Gambling: greyNicheCategorySchema,
-            Crypto: greyNicheCategorySchema,
-            Adult: greyNicheCategorySchema,
-            CBD: greyNicheCategorySchema,
-            Pharmacy: greyNicheCategorySchema,
-            Loan: greyNicheCategorySchema,
-          })
-          .optional(),
-      })
-      .refine(
-        (data) => {
-          if (data.samePrice) {
-            if (data.price === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["price"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Gambling.guestPost === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Gambling.guestPost"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Gambling.linkInsertion === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Gambling.linkInsertion"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Adult.guestPost === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Adult.guestPost"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Adult.linkInsertion === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Adult.linkInsertion"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.CBD.guestPost === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.CBD.guestPost"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.CBD.linkInsertion === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.CBD.linkInsertion"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Crypto.guestPost === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Crypto.guestPost"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Crypto.linkInsertion === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Crypto.linkInsertion"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Loan.guestPost === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Loan.guestPost"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Loan.linkInsertion === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Loan.linkInsertion"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Pharmacy.guestPost === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Pharmacy.guestPost"],
-        }
-      )
-      .refine(
-        (data) => {
-          if (!data.samePrice) {
-            if (data.categories?.Pharmacy.linkInsertion === 0) {
-              return false;
-            }
-          }
-          return true;
-        },
-        {
-          message: "Price must be non-negative",
-          path: ["categories.Pharmacy.linkInsertion"],
-        }
-      ),
+    greyNicheOffer: z.object({
+      samePrice: z.boolean().optional(),
+      price: z.number().min(0, { message: "Must be non-negative" }).optional(),
+      categories: z
+        .object({
+          Gambling: greyNicheCategorySchema,
+          Crypto: greyNicheCategorySchema,
+          Adult: greyNicheCategorySchema,
+          CBD: greyNicheCategorySchema,
+          Pharmacy: greyNicheCategorySchema,
+          Loan: greyNicheCategorySchema,
+        })
+        .optional(),
+    }),
     homepageOffer: z.object({
-      price: nonNegativePrice,
+      price: z.number().min(0, { message: "Must be non-negative" }).optional(),
       description: z.string().min(1, "Homepage offer description is required"),
     }),
   }),

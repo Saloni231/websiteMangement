@@ -87,7 +87,7 @@ export default function Form() {
 
   return (
     <>
-      <h2 className="mx-6 font-semibold text-2xl lg:text-3xl">
+      <h2 className="mx-6 font-semibold text-[32px] leading-[44px] tracking-[-0.25px]">
         {selectedWebsite ? "Edit Website" : "Add a website"}
       </h2>
       <FormProvider {...form}>

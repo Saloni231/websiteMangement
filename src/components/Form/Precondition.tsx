@@ -37,7 +37,7 @@ export default function Precondition() {
   const Status = () => {
     if (accepted && !expanded) {
       return (
-        <div className="font-medium text-[13px] leading-[18px] tracking-[0.1px] text-[#09090B] bg-[#34C7591A] px-[10px] py-[6px] rounded-[24px] inline-flex items-center justify-center gap-1">
+        <div className="font-medium text-[13px] leading-[18.29px] tracking-normal text-[#09090B] bg-[#34C7591A] px-[10px] py-[6px] rounded-[24px] inline-flex items-center justify-center gap-1">
           <Check stroke="#34C759" size={16} />
           <span>Accepted</span>
         </div>
@@ -46,7 +46,7 @@ export default function Precondition() {
       return null;
     } else {
       return (
-        <div className="font-medium text-[13px] leading-[18px] tracking-[0.1px] text-[#09090B] bg-[#FF95001A] px-[10px] py-[6px] rounded-[24px] inline-flex items-center justify-center gap-1">
+        <div className="font-medium text-[13px] leading-[18.29px] tracking-normal text-[#09090B] bg-[#FF95001A] px-[10px] py-[6px] rounded-[24px] inline-flex items-center justify-center gap-1">
           <Circle fill="#FF9500" stroke="#FF9500" size={9} />
           <span>Pending</span>
         </div>
@@ -62,7 +62,7 @@ export default function Precondition() {
         }`}
       >
         <CardHeader className="mx-2 flex items-center justify-between">
-          <CardTitle className="text-[#0F0C1B] text-[14px] font-normal ">
+          <CardTitle className="text-[#0F0C1B] font-normal text-[14px] leading-[20px] tracking-[0.25px]">
             Hey, Accept Preconditions before you start the listing!
           </CardTitle>
           <CardAction className="flex items-center space-x-1">
@@ -97,7 +97,7 @@ export default function Precondition() {
               </div>
             ) : (
               <Button
-                className="w-[156px] h-[36px] rounded-lg p-[10px] gap-[10px] flex items-center bg-[#613FDD] my-6"
+                className="w-[156px] h-[36px] rounded-lg p-[10px] gap-[10px] flex items-center bg-[#613FDD] my-6 font-medium text-[12px] leading-[20px] tracking-normal"
                 onClick={() =>
                   setValue("preconditionAccepted", true, {
                     shouldValidate: true,

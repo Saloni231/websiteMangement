@@ -22,7 +22,7 @@ export default function Offers({ disabled }: OfferProps) {
           disabled && "opacity-20 pointer-events-none select-none"
         )}
       >
-        <h3 className="font-medium text-[16px] leading-[24px] text-[#0F0C1B99]">
+        <h3 className="font-semibold text-[16px] leading-[24px] tracking-[-0.25px] text-[#0F0C1B99]">
           Gambling
         </h3>
         <div className="flex flex-col gap-2">
@@ -67,7 +67,7 @@ export default function Offers({ disabled }: OfferProps) {
           disabled && "opacity-20 pointer-events-none select-none"
         )}
       >
-        <h3 className="font-medium text-[16px] leading-[24px] text-[#0F0C1B99]">
+        <h3 className="font-semibold text-[16px] leading-[24px] tracking-[-0.25px] text-[#0F0C1B99]">
           Crypto
         </h3>
         <div className="flex flex-col gap-2">
@@ -111,7 +111,7 @@ export default function Offers({ disabled }: OfferProps) {
           disabled && "opacity-20 pointer-events-none select-none"
         )}
       >
-        <h3 className="font-medium text-[16px] leading-[24px] text-[#0F0C1B99]">
+        <h3 className="font-semibold text-[16px] leading-[24px] tracking-[-0.25px] text-[#0F0C1B99]">
           Adult
         </h3>
         <div className="flex flex-col gap-2">
@@ -155,7 +155,7 @@ export default function Offers({ disabled }: OfferProps) {
           disabled && "opacity-20 pointer-events-none select-none"
         )}
       >
-        <h3 className="font-medium text-[16px] leading-[24px] text-[#0F0C1B99]">
+        <h3 className="font-semibold text-[16px] leading-[24px] tracking-[-0.25px] text-[#0F0C1B99]">
           CBD
         </h3>
         <div className="flex flex-col gap-2">
@@ -199,7 +199,7 @@ export default function Offers({ disabled }: OfferProps) {
           disabled && "opacity-20 pointer-events-none select-none"
         )}
       >
-        <h3 className="font-medium text-[16px] leading-[24px] text-[#0F0C1B99]">
+        <h3 className="font-semibold text-[16px] leading-[24px] tracking-[-0.25px] text-[#0F0C1B99]">
           Pharmacy
         </h3>
         <div className="flex flex-col gap-2">
@@ -243,7 +243,7 @@ export default function Offers({ disabled }: OfferProps) {
           disabled && "opacity-20 pointer-events-none select-none"
         )}
       >
-        <h3 className="font-medium text-[16px] leading-[24px] text-[#0F0C1B99]">
+        <h3 className="font-semibold text-[16px] leading-[24px] tracking-[-0.25px] text-[#0F0C1B99]">
           Loan
         </h3>
         <div className="flex flex-col gap-2">

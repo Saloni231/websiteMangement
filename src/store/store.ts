@@ -8,12 +8,12 @@ export interface WebsiteFormData {
   description: string;
   categories?: string[];
   isOwner?: boolean;
-  offers: {
-    normal: {
-      guestPost: number;
-      linkInsertion: number;
+  offers?: {
+    normal?: {
+      guestPost?: number;
+      linkInsertion?: number;
     };
-    greyNicheOffer: {
+    greyNicheOffer?: {
       samePrice?: boolean;
       price?: number;
       categories?: {
@@ -43,8 +43,8 @@ export interface WebsiteFormData {
         };
       };
     };
-    homepageOffer: {
-      price: number;
+    homepageOffer?: {
+      price?: number;
       description: string;
     };
   };

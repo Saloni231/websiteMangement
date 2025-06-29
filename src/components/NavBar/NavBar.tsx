@@ -24,7 +24,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-2">
           <Image src="/logo.png" alt="logo" width={29} height={35} />
           <span
-            className={`${manrope.variable} font-manrope font-semibold text-[22px] leading-[24.29px] text-[#0F0C1B]`}
+            className={`${manrope.variable} font-manrope font-semibold text-[22px] leading-[24.29px] tracking-normal text-[#0F0C1B]`}
           >
             Kraken
           </span>
@@ -41,7 +41,7 @@ export default function Navbar() {
             <Link
               key={label}
               href={href}
-              className={`h-full flex items-center justify-center px-2 ${
+              className={`h-full flex items-center justify-center px-2 font-medium text-[16px] leading-[24px] tracking-[-0.25px] align-middle ${
                 path.includes(href)
                   ? "text-[#613FDD] bg-[#F4F1FF] border-b-2 border-[#613FDD] font-semibold"
                   : "hover:text-[#613FDD]"
