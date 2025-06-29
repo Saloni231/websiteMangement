@@ -1,12 +1,28 @@
-import { Controller } from "react-hook-form";
+"use client";
+
+import { Controller, useFormContext, useWatch } from "react-hook-form";
 import ComponentHeading from "./customUI/CompontHeading";
 import CustomRadioItem from "./customUI/CustomRadioItem";
 import { Card } from "./ui/card";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
+import { WebsiteFormSchema } from "@/store/formSchema";
 
 export default function ArticleSpecification() {
+  const {
+    formState: { errors },
+    control,
+  } = useFormContext<WebsiteFormSchema>();
+
+  const wordLimit = useWatch({ control, name: "article.wordLimit" });
+  const linkLimit = useWatch({ control, name: "article.advertiserLinkLimit" });
+
+  const wordLimitErrors =
+    wordLimit === "No, the advertiser (client) needs to provide the content";
+  const linkLimitErrors =
+    linkLimit === "A maximum number of links to the advertiser:";
+
   return (
     <div className="mt-10 mb-10 lg:w-[1024px] w-full">
       <ComponentHeading heading="Article specification" />
@@ -37,28 +53,52 @@ export default function ArticleSpecification() {
               name="article.wordLimit"
             />
             <div className="flex gap-6 mx-4">
-              <Controller
-                name="article.minWords"
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="number"
-                    placeholder="Min"
-                    className="w-[95px] h-[40px] text-[14px]"
-                  />
+              <div className="flex flex-col">
+                <Controller
+                  name="article.minWords"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      type="number"
+                      placeholder="Min"
+                      className={`w-[95px] h-[40px] text-[14px] ${
+                        errors.article?.minWords?.message &&
+                        wordLimitErrors &&
+                        "border-red-500"
+                      }`}
+                    />
+                  )}
+                />
+                {errors.article?.minWords?.message && wordLimitErrors && (
+                  <span className="text-red-500 text-sm">
+                    {errors.article.minWords.message}
+                  </span>
                 )}
-              />
-              <Controller
-                name="article.maxWords"
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="number"
-                    placeholder="Max"
-                    className="w-[95px] h-[40px] text-[14px]"
-                  />
+              </div>
+              <div className="flex flex-col">
+                <Controller
+                  name="article.maxWords"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      type="number"
+                      placeholder="Max"
+                      className={`w-[95px] h-[40px] text-[14px] ${
+                        errors.article?.maxWords?.message &&
+                        wordLimitErrors &&
+                        "border-red-500"
+                      }`}
+                    />
+                  )}
+                />
+                {errors.article?.maxWords && wordLimitErrors && (
+                  <span className="text-red-500 text-sm">
+                    {errors.article.maxWords.message}
+                  </span>
                 )}
-              />
+              </div>
             </div>
           </div>
 
@@ -103,28 +143,50 @@ export default function ArticleSpecification() {
               name="article.advertiserLinkLimit"
             />
             <div className="flex gap-6 mx-4">
-              <Controller
-                name="article.minAdvertiserLinks"
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="number"
-                    placeholder="Min"
-                    className="w-[95px] h-[40px] text-[14px]"
-                  />
+              <div className="flex flex-col">
+                <Controller
+                  name="article.minAdvertiserLinks"
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      type="number"
+                      placeholder="Min"
+                      className={`w-[95px] h-[40px] text-[14px] ${
+                        errors.article?.minAdvertiserLinks?.message &&
+                        linkLimitErrors &&
+                        "border-red-500"
+                      }`}
+                    />
+                  )}
+                />
+                {errors.article?.minAdvertiserLinks && linkLimitErrors && (
+                  <span className="text-red-500 text-sm">
+                    {errors.article.minAdvertiserLinks.message}
+                  </span>
                 )}
-              />
-              <Controller
-                name="article.maxAdvertiserLinks"
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="number"
-                    placeholder="Max"
-                    className="w-[95px] h-[40px] text-[14px]"
-                  />
+              </div>
+              <div className="flex flex-col">
+                <Controller
+                  name="article.maxAdvertiserLinks"
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      type="number"
+                      placeholder="Max"
+                      className={`w-[95px] h-[40px] text-[14px] ${
+                        errors.article?.maxAdvertiserLinks?.message &&
+                        linkLimitErrors &&
+                        "border-red-500"
+                      }`}
+                    />
+                  )}
+                />
+                {errors.article?.maxAdvertiserLinks && linkLimitErrors && (
+                  <span className="text-red-500 text-sm">
+                    {errors.article.maxAdvertiserLinks.message}
+                  </span>
                 )}
-              />
+              </div>
             </div>
           </div>
 
@@ -155,8 +217,8 @@ export default function ArticleSpecification() {
               render={({ field }) => (
                 <Textarea
                   {...field}
-                  className="w-full md:w-[471px] h-24 font-normal text-[14px] leading-[20px] tracking-[0px] placeholder:text-[#0F0C1B66] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA]"
                   placeholder="Description"
+                  className="w-full md:w-[471px] h-24 font-normal text-[14px] leading-[20px] tracking-[0px] placeholder:text-[#0F0C1B66] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA]"
                 />
               )}
             />

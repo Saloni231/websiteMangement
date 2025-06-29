@@ -26,6 +26,7 @@ type CustomSelectBoxProps = {
   type: "language" | "country";
   value: string;
   onChange: (val: string) => void;
+  error?: string;
 };
 
 export default function CustomSelectBox({
@@ -33,6 +34,7 @@ export default function CustomSelectBox({
   type,
   value,
   onChange,
+  error,
 }: CustomSelectBoxProps) {
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
@@ -43,6 +45,7 @@ export default function CustomSelectBox({
         ? options.find((opt) => opt.language === value)
         : options.find((opt) => opt.name === value);
     if (match) setSelectedOption(match);
+    if (!value) return setSelectedOption(null);
   }, [value, options, type]);
 
   const handleSelect = (option: Option) => {
@@ -64,7 +67,8 @@ export default function CustomSelectBox({
             "hover:shadow-[0_0_0_3px_rgba(97,63,221,0.12)]",
             "focus:outline-none focus:ring-2 focus:ring-[#A48AF4]",
             open && "shadow-[0_0_0_3px_rgba(97,63,221,0.2)]",
-            "transition-all"
+            "transition-all",
+            error && "border-red-500"
           )}
         >
           <div className="flex items-center gap-2">
@@ -81,7 +85,7 @@ export default function CustomSelectBox({
                 ? type === "language"
                   ? selectedOption.language
                   : selectedOption.name
-                : `Select ${type}`}
+                : `Select ${type === "language" ? "Language" : "Country"}`}
             </span>
           </div>
           <ChevronDown className="w-4 h-4 text-gray-400" />
@@ -111,10 +115,8 @@ export default function CustomSelectBox({
                     className={cn(
                       "ml-auto h-4 w-4 text-gray-400",
                       selectedOption &&
-                        ((type === "language" &&
-                          selectedOption.language === option.language) ||
-                          (type === "country" &&
-                            selectedOption.name === option.name))
+                        `${selectedOption.language} ${selectedOption.name}` ===
+                          `${option.language} ${option.name}`
                         ? "opacity-100"
                         : "opacity-0"
                     )}

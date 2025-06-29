@@ -33,12 +33,13 @@ export default function CustomRadioItem({
               <div key={value} className="flex items-center space-x-2">
                 <RadioGroupItem
                   value={value}
-                  id={value}
-                  className="w-4 h-4 rounded-full text-[#613FDD] border-gray-300 data-[state=checked]:border-[#613FDD]"
+                  id={`${name}-${value}`}
+                  className="w-4 h-4 rounded-full text-[#613FDD] data-[state=checked]:border-[#613FDD] [&_svg]:fill-[#613FDD] hover:ring-4 hover:ring-[#613FDD1C] hover:bg-[#613FDD1C] border-[#BABABA]"
                 />
                 <Label
-                  htmlFor={value}
-                  className="text-[#0F0C1B99] text-[14px] font-[400]"
+                  htmlFor={`${name}-${value}`}
+                  className="text-[14px] font-[400] text-[#0F0C1B99] transition-colors duration-200 
+                    data-[state=checked]:text-[#0F0C1B] data-[state=checked]:font-medium"
                 >
                   {value}
                 </Label>

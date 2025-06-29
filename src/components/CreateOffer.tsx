@@ -11,6 +11,7 @@ import Offers from "./customUI/Offers";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import ComponentHeading from "./customUI/CompontHeading";
+import { WebsiteFormSchema } from "@/store/formSchema";
 
 const TabsArr = [
   { label: "Normal Offer", value: "NormalOffer" },
@@ -18,17 +19,12 @@ const TabsArr = [
   { label: "Homepage link", value: "Homepagelink" },
 ];
 
-const GreyNicheCategory = [
-  "Gambling",
-  "Crypto",
-  "Adult",
-  "CBD",
-  "Pharmacy",
-  "Loan",
-];
-
 export default function CreateOffer() {
-  const { control, register } = useFormContext();
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<WebsiteFormSchema>();
   const samePriceGrey =
     useWatch({ control, name: "offers.greyNicheOffer.samePrice" }) || false;
 
@@ -42,7 +38,7 @@ export default function CreateOffer() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="shrink-0 min-w-max px-4 pb-3 pt-2 font-semibold text-sm md:text-base border-b-2 border-transparent data-[state=active]:border-[#613FDD] data-[state=active]:text-foreground"
+                className="shrink-0 min-w-max px-4 pb-3 pt-2 font-semibold text-sm md:text-base border-b-2 border-transparent data-[state=active]:border-b-[#613FDD] data-[state=active]:text-foreground rounded-none"
               >
                 {tab.label}
               </TabsTrigger>
@@ -56,7 +52,12 @@ export default function CreateOffer() {
                 <Controller
                   name="offers.normal.guestPost"
                   control={control}
-                  render={({ field }) => <PriceInput {...field} />}
+                  render={({ field }) => (
+                    <PriceInput
+                      {...field}
+                      error={errors.offers?.normal?.guestPost?.message}
+                    />
+                  )}
                 />
               </div>
               <div className="flex flex-col gap-2 my-2">
@@ -64,7 +65,12 @@ export default function CreateOffer() {
                 <Controller
                   name="offers.normal.linkInsertion"
                   control={control}
-                  render={({ field }) => <PriceInput {...field} />}
+                  render={({ field }) => (
+                    <PriceInput
+                      {...field}
+                      error={errors.offers?.normal?.linkInsertion?.message}
+                    />
+                  )}
                 />
               </div>
             </div>
@@ -80,7 +86,9 @@ export default function CreateOffer() {
                     <Checkbox
                       id="SamePrice"
                       checked={field.value}
-                      onCheckedChange={(val) => field.onChange(!!val)}
+                      onCheckedChange={(val) => {
+                        field.onChange(!!val);
+                      }}
                       className="peer h-5 w-5 rounded-full border border-gray-300 bg-white data-[state=checked]:bg-white  data-[state=checked]:border-[#613FDD] data-[state=checked]:text-white focus-visible:ring-2 focus-visible:ring-[#EDE9FE] hover:ring-4 hover:ring-[#EDE9FE] hover:bg-[#EDE9FE] transition-all"
                     />
                   )}
@@ -103,19 +111,18 @@ export default function CreateOffer() {
                 <Controller
                   name="offers.greyNicheOffer.price"
                   control={control}
-                  render={({ field }) => <PriceInput {...field} />}
+                  render={({ field }) => (
+                    <PriceInput
+                      {...field}
+                      error={errors.offers?.greyNicheOffer?.price?.message}
+                    />
+                  )}
                 />
               </div>
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4 m-2">
-              {GreyNicheCategory.map((category) => (
-                <Offers
-                  heading={category}
-                  key={category}
-                  disabled={samePriceGrey}
-                />
-              ))}
+              <Offers disabled={samePriceGrey} />
             </div>
           </TabsContent>
 
@@ -126,16 +133,29 @@ export default function CreateOffer() {
                 <Controller
                   name="offers.homepageOffer.price"
                   control={control}
-                  render={({ field }) => <PriceInput {...field} />}
+                  render={({ field }) => (
+                    <PriceInput
+                      {...field}
+                      error={errors.offers?.homepageOffer?.price?.message}
+                    />
+                  )}
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <CustomLabel label="Offer Guidelines" />
                 <Textarea
                   {...register("offers.homepageOffer.description")}
-                  className="w-full md:w-[542px] h-24 font-normal text-[14px] leading-[20px] tracking-[0px] placeholder:text-[#0F0C1B66] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA]"
                   placeholder="Description"
+                  className={`w-full lg:w-[856px] h-24 text-[14px] placeholder:text-[#0F0C1B66] border-[#EAEAEA] font-normal  leading-[20px] tracking-[0px] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
+                    errors.offers?.homepageOffer?.description?.message &&
+                    "border-red-500"
+                  }`}
                 />
+                {errors.offers?.homepageOffer?.description?.message && (
+                  <span className="text-red-500 text-sm">
+                    {errors.offers?.homepageOffer?.description?.message}
+                  </span>
+                )}
               </div>
             </div>
           </TabsContent>

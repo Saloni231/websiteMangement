@@ -1,5 +1,3 @@
-"use client";
-
 import { Check, ChevronDown, ChevronUp, Circle } from "lucide-react";
 import {
   Card,
@@ -15,14 +13,26 @@ import {
 } from "./ui/collapsible";
 import { Button } from "./ui/button";
 import { useFormContext } from "react-hook-form";
+import { WebsiteFormSchema } from "@/store/formSchema";
+import { useState, useEffect } from "react";
 
 export default function Precondition() {
-  const { watch, setValue } = useFormContext();
-  const accepted = watch("preconditionAccepted");
-  const expanded = watch("preconditionExpanded");
+  const [expanded, setExpanded] = useState(false);
+  const {
+    watch,
+    setValue,
+    formState: { errors },
+    trigger,
+  } = useFormContext<WebsiteFormSchema>();
 
-  const setExpanded = (value: boolean) =>
-    setValue("preconditionExpanded", value);
+  const accepted = watch("preconditionAccepted");
+
+  useEffect(() => {
+    // Trigger validation on change of preconditionAccepted value
+    if (accepted) {
+      trigger("preconditionAccepted");
+    }
+  }, [accepted, trigger]);
 
   const Status = () => {
     if (accepted && !expanded) {
@@ -46,8 +56,12 @@ export default function Precondition() {
 
   return (
     <Collapsible open={expanded} onOpenChange={setExpanded}>
-      <Card className="w-full my-6 py-2 rounded-md border">
-        <CardHeader className="mx-2  flex items-center justify-between">
+      <Card
+        className={`w-full my-6 py-2 rounded-md border ${
+          errors.preconditionAccepted?.message ? "border-red-500" : ""
+        }`}
+      >
+        <CardHeader className="mx-2 flex items-center justify-between">
           <CardTitle className="text-[#0F0C1B] text-[14px] font-normal ">
             Hey, Accept Preconditions before you start the listing!
           </CardTitle>
@@ -71,7 +85,7 @@ export default function Precondition() {
             >
               Before you can proceed with your listing, please make sure to
               review all required preconditions. Accepting these is mandatory to
-              continue. It ensures your submission meets our platformstandards
+              continue. It ensures your submission meets our platform standards
               and avoids delays. Listings that don’t meet these terms may be
               rejected. Take a moment to go through them carefully before moving
               ahead. Once accepted, you’ll be able to start listing right away.
@@ -84,7 +98,11 @@ export default function Precondition() {
             ) : (
               <Button
                 className="w-[156px] h-[36px] rounded-lg p-[10px] gap-[10px] flex items-center bg-[#613FDD] my-6"
-                onClick={() => setValue("preconditionAccepted", true)}
+                onClick={() =>
+                  setValue("preconditionAccepted", true, {
+                    shouldValidate: true,
+                  })
+                }
               >
                 Accept
               </Button>
