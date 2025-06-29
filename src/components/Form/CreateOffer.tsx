@@ -12,6 +12,7 @@ import { Textarea } from "../ui/textarea";
 import { Label } from "../ui/label";
 import ComponentHeading from "../customUI/CompontHeading";
 import { WebsiteFormSchema } from "@/store/formSchema";
+import { memo } from "react";
 
 const TabsArr = [
   { label: "Normal Offer", value: "NormalOffer" },
@@ -19,7 +20,7 @@ const TabsArr = [
   { label: "Homepage link", value: "Homepagelink" },
 ];
 
-export default function CreateOffer() {
+function CreateOffer() {
   const {
     control,
     register,
@@ -33,7 +34,7 @@ export default function CreateOffer() {
       <ComponentHeading heading="Create offer" />
       <Card className="shadow-xs border-none mt-6 p-6 w-full lg:w-[1060px]">
         <Tabs defaultValue="NormalOffer" className="w-full relative">
-          <TabsList className="flex h-[48px] w-full rounded-none justify-start border-b bg-transparent p-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          <TabsList className="flex h-[48px] w-[536px] rounded-none justify-start border-b bg-transparent p-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
             {TabsArr.map((tab) => (
               <TabsTrigger
                 key={tab.value}
@@ -146,7 +147,7 @@ export default function CreateOffer() {
                 <Textarea
                   {...register("offers.homepageOffer.description")}
                   placeholder="Description"
-                  className={`w-full lg:w-[856px] h-24 text-[14px] placeholder:text-[#0F0C1B66] border-[#EAEAEA] font-normal  leading-[20px] tracking-[0px] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
+                  className={`w-full lg:w-[856px] h-24 font-medium text-[14px] leading-[20px] tracking-normal placeholder:text-[#0F0C1B66] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
                     errors.offers?.homepageOffer?.description?.message &&
                     "border-red-500"
                   }`}
@@ -164,3 +165,5 @@ export default function CreateOffer() {
     </div>
   );
 }
+
+export default memo(CreateOffer);

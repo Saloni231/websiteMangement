@@ -85,7 +85,7 @@ export default function Navbar() {
                 key={label}
                 href={href}
                 className={`py-2 px-3 ${
-                  path === href
+                  path.includes(href)
                     ? "text-[#613FDD] bg-[#F4F1FF] border-b-2 border-[#613FDD] font-semibold"
                     : "hover:text-[#613FDD]"
                 }`}

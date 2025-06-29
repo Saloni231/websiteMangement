@@ -8,8 +8,9 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { WebsiteFormSchema } from "@/store/formSchema";
+import { memo } from "react";
 
-export default function ArticleSpecification() {
+function ArticleSpecification() {
   const {
     formState: { errors },
     control,
@@ -256,3 +257,5 @@ export default function ArticleSpecification() {
     </div>
   );
 }
+
+export default memo(ArticleSpecification);

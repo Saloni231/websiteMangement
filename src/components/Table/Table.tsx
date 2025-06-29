@@ -10,7 +10,6 @@ import {
   TableRow,
 } from "../ui/table";
 import { Button } from "../ui/button";
-import { useCountryStore } from "@/store/countryData";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { redirect } from "next/navigation";
 import Image from "next/image";
@@ -20,8 +19,6 @@ export default function WebsiteTable() {
   const itemsPerPage = 10;
 
   const { data, setSelectedWebsite } = useStore();
-
-  const { fetchCountries } = useCountryStore();
 
   const paginatedData = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -74,10 +71,6 @@ export default function WebsiteTable() {
   useEffect(() => {
     setSelectedWebsite(null);
   }, []);
-
-  useEffect(() => {
-    fetchCountries();
-  }, [fetchCountries]);
 
   return (
     <div className="container mx-auto p-4">

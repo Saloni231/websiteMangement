@@ -9,7 +9,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import ComponentHeading from "../customUI/CompontHeading";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { WebsiteFormSchema } from "@/store/formSchema";
 import { countryType, useCountryStore } from "@/store/countryData";
 
@@ -53,7 +53,7 @@ const categories = [
   "Shopping",
 ];
 
-export default function WebsiteDetail() {
+function WebsiteDetail() {
   const {
     register,
     setValue,
@@ -93,6 +93,8 @@ export default function WebsiteDetail() {
             <Input
               {...register("website")}
               placeholder="Website URL"
+              aria-label="Enter the URL of your website"
+              aria-required="true"
               className={`font-medium text-[14px] leading-[20px] tracking-normal placeholder:text-[#0F0C1B66] border-[#EAEAEA] rounded-md hover:shadow-[0_0_0_3px_rgba(97,63,221,0.1)] focus:outline-none focus:shadow-[inset_0_0_5.5px_0_rgba(0,0,0,0.1)] transition focus:ring-0 focus-visible:ring-0 focus-visible:border-[#EAEAEA] ${
                 errors.website?.message ? "border-red-500" : ""
               }`}
@@ -198,3 +200,5 @@ export default function WebsiteDetail() {
     </div>
   );
 }
+
+export default memo(WebsiteDetail);

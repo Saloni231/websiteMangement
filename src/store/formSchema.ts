@@ -1,59 +1,66 @@
 import { z } from "zod";
 
-const greyNicheCategorySchema = z.object({
-  guestPost: z.number().min(0, { message: "Must be non-negative" }).optional(),
-  linkInsertion: z
-    .number()
-    .min(0, { message: "Must be non-negative" })
-    .optional(),
-});
-
 export const websiteFormSchema = z.object({
-  website: z
-    .string()
-    .min(1, "Website URL is required")
-    .refine((val) => /^https?:\/\/[\w.-]+(?:\.[\w\.-]+)+/.test(val), {
-      message: "Enter a valid URL",
-    }),
-  language: z.string().min(1, "Primary Language is required"),
+  website: z.string().url("Invalid URL").min(1, "Website is required"),
+  language: z.string().min(1, "Language is required"),
   country: z.string().min(1, "Country is required"),
-  flag: z.string(),
+  flag: z.string().min(1, "Flag is required"),
   description: z.string().min(1, "Description is required"),
   categories: z.array(z.string()).optional(),
-  isOwner: z.boolean().optional(),
+  isOwner: z.boolean(),
+  preconditionAccepted: z.boolean().refine((val) => val === true, {
+    message: "You must accept the preconditions",
+  }),
+
   offers: z.object({
     normal: z.object({
       guestPost: z
         .number()
-        .min(0, { message: "Must be non-negative" })
+        .min(0, "Guest post price cannot be negative")
         .optional(),
       linkInsertion: z
         .number()
-        .min(0, { message: "Must be non-negative" })
+        .min(0, "Link insertion price cannot be negative")
         .optional(),
     }),
+
     greyNicheOffer: z.object({
-      samePrice: z.boolean().optional(),
-      price: z.number().min(0, { message: "Must be non-negative" }).optional(),
-      categories: z
-        .object({
-          Gambling: greyNicheCategorySchema,
-          Crypto: greyNicheCategorySchema,
-          Adult: greyNicheCategorySchema,
-          CBD: greyNicheCategorySchema,
-          Pharmacy: greyNicheCategorySchema,
-          Loan: greyNicheCategorySchema,
-        })
-        .optional(),
+      samePrice: z.boolean(),
+      price: z.number().min(0, "Price cannot be negative"),
+      categories: z.object({
+        Gambling: z.object({
+          guestPost: z.number().min(0, "Price cannot be negative"),
+          linkInsertion: z.number().min(0, "Price cannot be negative"),
+        }),
+        Crypto: z.object({
+          guestPost: z.number().min(0, "Price cannot be negative"),
+          linkInsertion: z.number().min(0, "Price cannot be negative"),
+        }),
+        Adult: z.object({
+          guestPost: z.number().min(0, "Price cannot be negative"),
+          linkInsertion: z.number().min(0, "Price cannot be negative"),
+        }),
+        CBD: z.object({
+          guestPost: z.number().min(0, "Price cannot be negative"),
+          linkInsertion: z.number().min(0, "Price cannot be negative"),
+        }),
+        Pharmacy: z.object({
+          guestPost: z.number().min(0, "Price cannot be negative"),
+          linkInsertion: z.number().min(0, "Price cannot be negative"),
+        }),
+        Loan: z.object({
+          guestPost: z.number().min(0, "Price cannot be negative"),
+          linkInsertion: z.number().min(0, "Price cannot be negative"),
+        }),
+      }),
     }),
+
     homepageOffer: z.object({
-      price: z.number().min(0, { message: "Must be non-negative" }).optional(),
-      description: z.string().min(1, "Homepage offer description is required"),
+      price: z.number().min(0, "Price cannot be negative"),
+      description: z.string().min(1, "Description is required"),
     }),
   }),
-  preconditionAccepted: z.boolean().refine((val) => val === true, {
-    message: "You must accept the preconditions to continue.",
-  }),
+
   article: z
     .object({
       writingIncluded: z.string(),

@@ -28,7 +28,6 @@ export default function Precondition() {
   const accepted = watch("preconditionAccepted");
 
   useEffect(() => {
-    // Trigger validation on change of preconditionAccepted value
     if (accepted) {
       trigger("preconditionAccepted");
     }

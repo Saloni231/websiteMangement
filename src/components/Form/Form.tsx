@@ -1,15 +1,30 @@
 "use client";
 
-import ArticleSpecification from "@/components/Form/ArticleSpecification";
-import CreateOffer from "@/components/Form/CreateOffer";
-import Precondition from "@/components/Form/Precondition";
-import { Button } from "@/components/ui/button";
-import WebsiteDetail from "@/components/Form/WebsiteDetail";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { redirect } from "next/navigation";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { websiteFormSchema, WebsiteFormSchema } from "../../store/formSchema";
+
+import Precondition from "@/components/Form/Precondition";
+import { Button } from "@/components/ui/button";
+
 import { useStore } from "@/store/store";
-import { redirect } from "next/navigation";
+import { useCountryStore } from "@/store/countryData";
+import { websiteFormSchema, WebsiteFormSchema } from "@/store/formSchema";
+
+const CreateOffer = dynamic(() => import("@/components/Form/CreateOffer"), {
+  ssr: false,
+});
+const ArticleSpecification = dynamic(
+  () => import("@/components/Form/ArticleSpecification"),
+  {
+    ssr: false,
+  }
+);
+const WebsiteDetail = dynamic(() => import("@/components/Form/WebsiteDetail"), {
+  ssr: false,
+});
 
 const formInitialValue: WebsiteFormSchema = {
   website: "",
@@ -61,17 +76,51 @@ const formInitialValue: WebsiteFormSchema = {
 
 export default function Form() {
   const { addData, selectedWebsite, data } = useStore();
+  const [isLoading, setIsLoading] = useState(true);
 
   const form = useForm<WebsiteFormSchema>({
     resolver: zodResolver(websiteFormSchema),
-    defaultValues: selectedWebsite || formInitialValue,
+    defaultValues: formInitialValue,
     mode: "onSubmit",
   });
 
   const {
     handleSubmit,
     formState: { errors },
+    watch,
+    setValue,
+    reset,
   } = form;
+
+  const formData = watch();
+
+  const { fetchCountries, countries } = useCountryStore();
+
+  useEffect(() => {
+    if (countries.length === 0) {
+      fetchCountries();
+    }
+  }, [fetchCountries, countries]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      localStorage.setItem("websiteFormData", JSON.stringify(formData));
+    }
+  }, [formData, isLoading]);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("websiteFormData");
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+
+      Object.keys(parsedData).forEach((key) => {
+        if (parsedData[key] !== undefined) {
+          setValue(key as keyof WebsiteFormSchema, parsedData[key]);
+        }
+      });
+    }
+    setIsLoading(false);
+  }, [setValue]);
 
   const onSubmit = (newData: WebsiteFormSchema) => {
     if (selectedWebsite) {
@@ -82,6 +131,8 @@ export default function Form() {
     } else {
       addData(newData);
     }
+    localStorage.removeItem("websiteFormData");
+    reset();
     redirect("/my-website");
   };
 

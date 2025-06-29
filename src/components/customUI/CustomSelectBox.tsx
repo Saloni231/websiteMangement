@@ -67,6 +67,7 @@ export default function CustomSelectBox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
+          aria-label={`Select ${type === "language" ? "language" : "country"}`}
           className={cn(
             "w-full font-normal justify-between items-center px-4 py-2",
             "rounded-md border border-[#EAEAEA] bg-white text-gray-600",
@@ -98,7 +99,10 @@ export default function CustomSelectBox({
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-[250px] p-0 mt-2 rounded-md border border-[#EAEAEA] shadow-lg bg-white">
+      <PopoverContent
+        className="w-[250px] p-0 mt-2 rounded-md border border-[#EAEAEA] shadow-lg bg-white"
+        aria-describedby="select-tooltip"
+      >
         <Command>
           <CommandInput placeholder="Search..." className="h-9 px-3 text-sm" />
           <CommandList>
@@ -109,6 +113,7 @@ export default function CustomSelectBox({
                   key={`${option.language}-${option.name}`}
                   value={`${option.language} ${option.name}`}
                   onSelect={() => handleSelect(option)}
+                  aria-label={`Select ${option.name} as ${type}`}
                   className={cn(
                     "px-3 py-2 flex items-center gap-2 text-sm cursor-pointer rounded-sm"
                   )}

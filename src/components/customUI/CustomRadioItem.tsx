@@ -34,10 +34,12 @@ export default function CustomRadioItem({
                 <RadioGroupItem
                   value={value}
                   id={`${name}-${value}`}
+                  aria-labelledby={`${name}-${value}-label`}
                   className="w-4 h-4 rounded-full text-[#613FDD] data-[state=checked]:border-[#613FDD] [&_svg]:fill-[#613FDD] hover:ring-4 hover:ring-[#613FDD1C] hover:bg-[#613FDD1C] border-[#BABABA]"
                 />
                 <Label
                   htmlFor={`${name}-${value}`}
+                  id={`${name}-${value}-label`}
                   className="font-normal text-[14px] leading-[20px] tracking-[0.25px] text-[#0F0C1B99] transition-colors duration-200 
                     data-[state=checked]:text-[#0F0C1B] data-[state=checked]:font-medium"
                 >
