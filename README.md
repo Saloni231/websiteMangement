@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Backlink Marketplace
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The Backlink Marketplace is a web application that allows users to manage and display details about websites offering backlink services. The platform facilitates adding websites, creating offers, and managing backlinks through a user-friendly interface built using **Next.js**, **React**, **TypeScript**, and **TailwindCSS**. It integrates form handling with **React Hook Form**, validation with **Zod**, and state management with **Zustand**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Dynamic Form Handling**: Multi-step forms with conditional logic.
+- **Data Persistence**: Uses `localStorage` to persist form data for seamless user experience.
+- **Offer Management**: Users can add, edit, and view offers related to websites, such as Guest Posting, Link Insertion, and Grey Niche offers.
+- **Form Validation**: Ensures data accuracy using **Zod** validation schemas and **React Hook Form** for easy form state management.
+- **Pagination**: Display websites in paginated tables for better usability.
+- **Icons for Categories**: Dynamically display icons for various website categories (e.g., Gambling, Crypto, CBD) in the Offers Summary column.
+- **Mobile-Friendly Design**: Fully responsive UI built with **TailwindCSS** for a seamless experience across devices.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js** (React framework for building the application)
+- **TypeScript** (For type safety and better code quality)
+- **React Hook Form** (For handling forms and validation)
+- **Zod** (For schema-based form validation)
+- **TailwindCSS** (For utility-first styling)
+- **Zustand** (For state management)
+- **Lucide-React** (For icons used in the application)
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ensure you have the following installed on your machine:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Node.js](https://nodejs.org/en/) (v14.0 or above)
+- [npm](https://www.npmjs.com/get-npm) or [Yarn](https://classic.yarnpkg.com/en/docs/install) (Package managers)
 
-## Deploy on Vercel
+### Steps to Set Up
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   git clone https://github.com/Saloni231/websiteMangement.git
+   cd backlink-marketplace
+   ```
