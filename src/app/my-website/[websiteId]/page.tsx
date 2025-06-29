@@ -1,4 +1,6 @@
-import Form from "@/components/Form/Form";
+import dynamic from "next/dynamic";
+
+const Form = dynamic(() => import("@/components/Form/Form"));
 
 export default function AddWebsite() {
   return (

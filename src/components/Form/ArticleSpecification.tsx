@@ -1,14 +1,18 @@
 "use client";
 
-import { Controller, useFormContext, useWatch } from "react-hook-form";
-import ComponentHeading from "../customUI/CompontHeading";
-import CustomRadioItem from "../customUI/CustomRadioItem";
-import { Card } from "../ui/card";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
-import { WebsiteFormSchema } from "@/store/formSchema";
 import { memo } from "react";
+
+import { Controller, useFormContext, useWatch } from "react-hook-form";
+
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+
+import ComponentHeading from "@/components/customUI/CompontHeading";
+import CustomRadioItem from "@/components/customUI/CustomRadioItem";
+
+import { WebsiteFormSchema } from "@/store/formSchema";
 
 function ArticleSpecification() {
   const {

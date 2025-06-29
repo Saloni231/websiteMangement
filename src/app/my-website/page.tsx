@@ -1,7 +1,11 @@
-import WebsiteTable from "@/components/Table/Table";
-import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+import { PlusIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
+const WebsiteTable = dynamic(() => import("@/components/Table/Table"));
 
 export default async function MyWebsite() {
   return (

@@ -1,12 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
+
 import Image from "next/image";
 import { Manrope } from "next/font/google";
 import Link from "next/link";
-import { Bolt, ShoppingBag, User, WalletMinimal, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Button } from "../ui/button";
+
+import { Bolt, ShoppingBag, User, WalletMinimal, Menu, X } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 const manrope = Manrope({
   subsets: ["latin"],

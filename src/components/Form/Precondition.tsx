@@ -1,20 +1,23 @@
+import { useState, useEffect } from "react";
+import { useFormContext } from "react-hook-form";
+
 import { Check, ChevronDown, ChevronUp, Circle } from "lucide-react";
+
 import {
   Card,
   CardAction,
   CardContent,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../ui/collapsible";
-import { Button } from "../ui/button";
-import { useFormContext } from "react-hook-form";
+} from "@/components/ui/collapsible";
+import { Button } from "@/components/ui/button";
+
 import { WebsiteFormSchema } from "@/store/formSchema";
-import { useState, useEffect } from "react";
 
 export default function Precondition() {
   const [expanded, setExpanded] = useState(false);

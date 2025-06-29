@@ -1,7 +1,9 @@
 import { Controller } from "react-hook-form";
+
+import { cn } from "@/lib/utils";
+
 import CustomLabel from "./CustomLabel";
 import PriceInput from "./PriceInput";
-import { cn } from "@/lib/utils";
 
 type OfferCategoryProps = {
   category: string;

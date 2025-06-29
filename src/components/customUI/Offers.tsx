@@ -1,6 +1,8 @@
-import OfferCategory from "./OfferCategory";
-import { WebsiteFormSchema } from "@/store/formSchema";
 import { useFormContext } from "react-hook-form";
+
+import { WebsiteFormSchema } from "@/store/formSchema";
+
+import OfferCategory from "./OfferCategory";
 
 type OfferProps = {
   disabled: boolean;

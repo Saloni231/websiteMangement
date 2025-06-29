@@ -1,6 +1,8 @@
-import { DollarSign } from "lucide-react";
-import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
+
+import { DollarSign } from "lucide-react";
+
+import { Input } from "@/components/ui/input";
 
 type PriceInputProps = {
   value: number | undefined;

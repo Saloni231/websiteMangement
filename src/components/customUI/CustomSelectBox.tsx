@@ -1,9 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
+
+import { useFormContext } from "react-hook-form";
+
 import Image from "next/image";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
+
+import { ChevronDown, Check } from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -11,10 +23,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "../ui/command";
-import { ChevronDown, Check } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useFormContext } from "react-hook-form";
+} from "@/components/ui/command";
 
 export type Option = {
   language: string;

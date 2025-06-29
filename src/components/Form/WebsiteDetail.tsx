@@ -1,15 +1,18 @@
 "use client";
 
-import { useFormContext, Controller } from "react-hook-form";
-import CustomLabel from "../customUI/CustomLabel";
-import CustomSelectBox from "../customUI/CustomSelectBox";
-import { Card } from "../ui/card";
-import { Checkbox } from "../ui/checkbox";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
-import ComponentHeading from "../customUI/CompontHeading";
 import { memo, useMemo } from "react";
+import { useFormContext, Controller } from "react-hook-form";
+
+import { Card } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+
+import CustomLabel from "@/components/customUI/CustomLabel";
+import CustomSelectBox from "@/components/customUI/CustomSelectBox";
+import ComponentHeading from "@/components/customUI/CompontHeading";
+
 import { WebsiteFormSchema } from "@/store/formSchema";
 import { countryType, useCountryStore } from "@/store/countryData";
 

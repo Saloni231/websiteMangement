@@ -1,18 +1,22 @@
 "use client";
 
-import { useStore, WebsiteFormData } from "@/store/store";
 import { useEffect, useMemo, useState } from "react";
+
+import { redirect } from "next/navigation";
+import Image from "next/image";
+
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
 import {
   Table,
   TableBody,
   TableCell,
   TableHeader,
   TableRow,
-} from "../ui/table";
-import { Button } from "../ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { redirect } from "next/navigation";
-import Image from "next/image";
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+
+import { useStore, WebsiteFormData } from "@/store/store";
 
 export default function WebsiteTable() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,7 +61,6 @@ export default function WebsiteTable() {
     setSelectedWebsite(item);
     redirect("/my-website/edit-website");
   };
-
   function getDomainFromUrl(url: string) {
     try {
       const parsedUrl = new URL(url);

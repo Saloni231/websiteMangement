@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Precondition from "@/components/Form/Precondition";
 import { Button } from "@/components/ui/button";
 
-import { useStore } from "@/store/store";
+import { useStore, WebsiteFormData } from "@/store/store";
 import { useCountryStore } from "@/store/countryData";
 import { websiteFormSchema, WebsiteFormSchema } from "@/store/formSchema";
 
@@ -103,24 +103,29 @@ export default function Form() {
   }, [fetchCountries, countries]);
 
   useEffect(() => {
+    if (selectedWebsite) {
+      Object.keys(selectedWebsite).forEach((key) => {
+        setValue(key as keyof WebsiteFormData, selectedWebsite[key]);
+      });
+    } else {
+      const savedData = localStorage.getItem("websiteFormData");
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        Object.keys(parsedData).forEach((key) => {
+          if (parsedData[key] !== undefined) {
+            setValue(key as keyof WebsiteFormSchema, parsedData[key]);
+          }
+        });
+      }
+    }
+    setIsLoading(false);
+  }, [selectedWebsite, setValue]);
+
+  useEffect(() => {
     if (!isLoading) {
       localStorage.setItem("websiteFormData", JSON.stringify(formData));
     }
   }, [formData, isLoading]);
-
-  useEffect(() => {
-    const savedData = localStorage.getItem("websiteFormData");
-    if (savedData) {
-      const parsedData = JSON.parse(savedData);
-
-      Object.keys(parsedData).forEach((key) => {
-        if (parsedData[key] !== undefined) {
-          setValue(key as keyof WebsiteFormSchema, parsedData[key]);
-        }
-      });
-    }
-    setIsLoading(false);
-  }, [setValue]);
 
   const onSubmit = (newData: WebsiteFormSchema) => {
     if (selectedWebsite) {
@@ -132,9 +137,13 @@ export default function Form() {
       addData(newData);
     }
     localStorage.removeItem("websiteFormData");
-    reset();
+    reset(formInitialValue);
     redirect("/my-website");
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

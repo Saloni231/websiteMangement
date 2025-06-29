@@ -1,6 +1,7 @@
+import { Controller, useFormContext } from "react-hook-form";
+
 import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Controller, useFormContext } from "react-hook-form";
 
 interface CustomRadioItemProps {
   question: string;
