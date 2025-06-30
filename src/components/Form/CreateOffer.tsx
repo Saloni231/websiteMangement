@@ -34,9 +34,9 @@ function CreateOffer() {
   return (
     <div>
       <ComponentHeading heading="Create offer" />
-      <Card className="shadow-xs border-none mt-6 p-6 w-full lg:w-[1060px]">
+      <Card className="shadow-xs border-none mt-6 p-6 w-full max-w-[1060px]">
         <Tabs defaultValue="NormalOffer" className="w-full relative">
-          <TabsList className="flex h-[48px] w-[536px] rounded-none justify-start border-b bg-transparent p-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
+          <TabsList className="flex h-[48px] w-full rounded-none justify-start border-b bg-transparent p-0 overflow-x-auto whitespace-nowrap scrollbar-hide">
             {TabsArr.map((tab) => (
               <TabsTrigger
                 key={tab.value}
