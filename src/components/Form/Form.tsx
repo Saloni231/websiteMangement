@@ -75,7 +75,7 @@ const formInitialValue: WebsiteFormSchema = {
 };
 
 export default function Form() {
-  const { addData, selectedWebsite, data } = useStore();
+  const { addData, selectedWebsite, data, setSelectedWebsite } = useStore();
   const [isLoading, setIsLoading] = useState(true);
 
   const form = useForm<WebsiteFormSchema>({
@@ -90,6 +90,7 @@ export default function Form() {
     watch,
     setValue,
     reset,
+    setFocus,
   } = form;
 
   const formData = watch();
@@ -138,8 +139,18 @@ export default function Form() {
     }
     localStorage.removeItem("websiteFormData");
     reset(formInitialValue);
+    setSelectedWebsite(null);
     redirect("/my-website");
   };
+
+  useEffect(() => {
+    if (errors) {
+      const firstErrorField = Object.keys(errors)[0];
+      if (firstErrorField) {
+        setFocus(firstErrorField as any);
+      }
+    }
+  }, [errors, setFocus]);
 
   if (isLoading) {
     return <div>Loading...</div>;
