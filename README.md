@@ -1,43 +1,106 @@
 # Backlink Marketplace
 
-## Overview
+## Project Overview
 
-The Backlink Marketplace is a web application that allows users to manage and display details about websites offering backlink services. The platform facilitates adding websites, creating offers, and managing backlinks through a user-friendly interface built using **Next.js**, **React**, **TypeScript**, and **TailwindCSS**. It integrates form handling with **React Hook Form**, validation with **Zod**, and state management with **Zustand**.
+### Backlink Marketplace
 
-## Features
+This project is a simulation of a **Backlink Marketplace** that allows users to list their websites, manage backlink-related offers (such as guest posts, link insertions, homepage placements), and edit website details through a multi-section form.
 
-- **Dynamic Form Handling**: Multi-step forms with conditional logic.
-- **Data Persistence**: Uses `localStorage` to persist form data for seamless user experience.
-- **Offer Management**: Users can add, edit, and view offers related to websites, such as Guest Posting, Link Insertion, and Grey Niche offers.
-- **Form Validation**: Ensures data accuracy using **Zod** validation schemas and **React Hook Form** for easy form state management.
-- **Pagination**: Display websites in paginated tables for better usability.
-- **Icons for Categories**: Dynamically display icons for various website categories (e.g., Gambling, Crypto, CBD) in the Offers Summary column.
-- **Mobile-Friendly Design**: Fully responsive UI built with **TailwindCSS** for a seamless experience across devices.
+### Key Features:
 
-## Technologies Used
+- Website List Page with pagination.
+- Website Details Page for adding or editing website information.
+- Global state sync to ensure real-time updates.
+- Pixel-perfect UI following the provided Figma design.
+- Extensive form validation using **Zod**.
+- Use of **Tailwind CSS** and **shadcn/ui** for UI components.
+- **Zustand** for state management.
+- LocalStorage persistence for form data (bonus task).
 
-- **Next.js** (React framework for building the application)
-- **TypeScript** (For type safety and better code quality)
-- **React Hook Form** (For handling forms and validation)
-- **Zod** (For schema-based form validation)
-- **TailwindCSS** (For utility-first styling)
-- **Zustand** (For state management)
-- **Lucide-React** (For icons used in the application)
+---
 
-## Installation
+## Installation & Setup
 
-### Prerequisites
+### Requirements:
 
-Ensure you have the following installed on your machine:
+- Node.js (>=16.x.x)
+- npm or yarn
 
-- [Node.js](https://nodejs.org/en/) (v14.0 or above)
-- [npm](https://www.npmjs.com/get-npm) or [Yarn](https://classic.yarnpkg.com/en/docs/install) (Package managers)
+### Steps to Run Locally:
 
-### Steps to Set Up
-
-1. Clone the repository:
+1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/Saloni231/websiteMangement.git
-   cd backlink-marketplace
+   git clone https://github.com/Saloni231/websiteMangement
+   cd websiteMangement
+
    ```
+
+2. **Install Dependencies:**
+   If you're using npm:
+
+   ```bash
+   npm install
+   ```
+
+   Or if you're using yarn:
+
+   ```bash
+   yarn install
+   ```
+
+3. **Start the Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+Or if you're using yarn:
+
+```bash
+yarn dev
+```
+
+The app should now be running on http://localhost:3000.
+
+4. **Build for Production (for Vercel Deployment):**
+   To build the app for production:
+
+   ```bash
+   npm run build
+   ```
+
+5. **Start the Production Build:**
+   After building the app, you can run it with:
+
+   ```bash
+   npm run start
+   ```
+
+### Technologies Used
+
+- React.js / Next.js (Latest Version)
+
+- Tailwind CSS (For styling)
+
+- shadcn/ui (UI Components)
+
+- Zustand (State Management)
+
+- Zod (Validation Schema)
+
+- TypeScript (For type safety)
+
+- Vercel (For deployment)
+
+## Deployment
+
+This project is deployed on Vercel.
+
+Production URL: [Backlink Marketplace on Vercel](https://backlinkmarketplace.vercel.app/my-website)
+
+````
+
+```
+
+```
+````
