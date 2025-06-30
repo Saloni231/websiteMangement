@@ -50,15 +50,16 @@ This project is a simulation of a **Backlink Marketplace** that allows users to 
    ```
 
 3. **Start the Development Server:**
+
    ```bash
    npm run dev
    ```
 
-Or if you're using yarn:
+   Or if you're using yarn:
 
-```bash
-yarn dev
-```
+   ```bash
+   yarn dev
+   ```
 
 The app should now be running on http://localhost:3000.
 
@@ -97,10 +98,3 @@ The app should now be running on http://localhost:3000.
 This project is deployed on Vercel.
 
 Production URL: [Backlink Marketplace on Vercel](https://backlinkmarketplace.vercel.app/my-website)
-
-````
-
-```
-
-```
-````
