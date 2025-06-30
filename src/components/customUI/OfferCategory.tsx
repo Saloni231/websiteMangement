@@ -7,7 +7,9 @@ import PriceInput from "./PriceInput";
 
 type OfferCategoryProps = {
   category: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   errors: any;
   disabled: boolean;
 };

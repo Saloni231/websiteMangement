@@ -106,7 +106,11 @@ export default function Form() {
   useEffect(() => {
     if (selectedWebsite) {
       Object.keys(selectedWebsite).forEach((key) => {
-        setValue(key as keyof WebsiteFormData, selectedWebsite[key]);
+        setValue(
+          key as keyof WebsiteFormData,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          selectedWebsite[key as keyof WebsiteFormData] as any
+        );
       });
     } else {
       const savedData = localStorage.getItem("websiteFormData");
@@ -147,6 +151,7 @@ export default function Form() {
     if (errors) {
       const firstErrorField = Object.keys(errors)[0];
       if (firstErrorField) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setFocus(firstErrorField as any);
       }
     }

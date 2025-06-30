@@ -25,6 +25,7 @@ export const useCountryStore = create<CountryStore>((set) => ({
       const countryArr: countryType[] = [];
 
       if (data.length > 0) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         data.forEach((country: any) => {
           const languages = Object.values(country.languages);
           if (languages.length > 1) {
