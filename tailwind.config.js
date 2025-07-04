@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['"DM Sans"', "sans-serif"],
-        manrope: ["var(--font-manrope)", "sans-serif"], // 👈 Add this line
+        manrope: ["var(--font-manrope)", "sans-serif"], 
       },
     },
   },
