@@ -24,14 +24,14 @@ export default function Navbar() {
   return (
     <header className="border-b bg-white shadow-sm">
       <div className="flex items-center justify-between px-4 md:px-6 h-[58px]">
-        <div className="flex items-center space-x-2">
+        <Link href={"/"} className="flex items-center space-x-2">
           <Image src="/logo.png" alt="logo" width={29} height={35} />
           <span
             className={`${manrope.variable} font-manrope font-semibold text-[22px] leading-[24.29px] tracking-normal text-[#0F0C1B]`}
           >
             Kraken
           </span>
-        </div>
+        </Link>
 
         <nav className="hidden lg:flex h-full space-x-2 font-medium text-[16px] leading-[24px] text-[#0F0C1B]">
           {[
