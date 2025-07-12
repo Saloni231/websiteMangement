@@ -2,7 +2,7 @@
 
 import { memo } from "react";
 
-import { Controller, useFormContext, useWatch } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -20,13 +20,7 @@ function ArticleSpecification() {
     control,
   } = useFormContext<WebsiteFormSchema>();
 
-  const wordLimit = useWatch({ control, name: "article.wordLimit" });
-  const linkLimit = useWatch({ control, name: "article.advertiserLinkLimit" });
 
-  const wordLimitErrors =
-    wordLimit === "No, the advertiser (client) needs to provide the content";
-  const linkLimitErrors =
-    linkLimit === "A maximum number of links to the advertiser:";
 
   return (
     <div className="mt-10 mb-10 lg:w-[1024px] w-full">
@@ -69,7 +63,7 @@ function ArticleSpecification() {
                       placeholder="Min"
                       className={`w-[95px] h-[40px] text-[14px] ${
                         errors.article?.minWords?.message &&
-                        wordLimitErrors &&
+
                         "border-red-500"
                       }`}
                       value={field.value || ""}
@@ -82,7 +76,7 @@ function ArticleSpecification() {
                     />
                   )}
                 />
-                {errors.article?.minWords?.message && wordLimitErrors && (
+                {errors.article?.minWords?.message&& (
                   <span className="text-red-500 text-sm">
                     {errors.article.minWords.message}
                   </span>
@@ -99,7 +93,6 @@ function ArticleSpecification() {
                       placeholder="Max"
                       className={`w-[95px] h-[40px] text-[14px] ${
                         errors.article?.maxWords?.message &&
-                        wordLimitErrors &&
                         "border-red-500"
                       }`}
                       value={field.value || ""}
@@ -112,7 +105,7 @@ function ArticleSpecification() {
                     />
                   )}
                 />
-                {errors.article?.maxWords && wordLimitErrors && (
+                {errors.article?.maxWords && (
                   <span className="text-red-500 text-sm">
                     {errors.article.maxWords.message}
                   </span>
@@ -172,7 +165,6 @@ function ArticleSpecification() {
                       placeholder="Min"
                       className={`w-[95px] h-[40px] text-[14px] ${
                         errors.article?.minAdvertiserLinks?.message &&
-                        linkLimitErrors &&
                         "border-red-500"
                       }`}
                       value={field.value || ""}
@@ -185,7 +177,7 @@ function ArticleSpecification() {
                     />
                   )}
                 />
-                {errors.article?.minAdvertiserLinks && linkLimitErrors && (
+                {errors.article?.minAdvertiserLinks  && (
                   <span className="text-red-500 text-sm">
                     {errors.article.minAdvertiserLinks.message}
                   </span>
@@ -201,7 +193,7 @@ function ArticleSpecification() {
                       placeholder="Max"
                       className={`w-[95px] h-[40px] text-[14px] ${
                         errors.article?.maxAdvertiserLinks?.message &&
-                        linkLimitErrors &&
+
                         "border-red-500"
                       }`}
                       value={field.value || ""}
@@ -214,7 +206,7 @@ function ArticleSpecification() {
                     />
                   )}
                 />
-                {errors.article?.maxAdvertiserLinks && linkLimitErrors && (
+                {errors.article?.maxAdvertiserLinks &&  (
                   <span className="text-red-500 text-sm">
                     {errors.article.maxAdvertiserLinks.message}
                   </span>

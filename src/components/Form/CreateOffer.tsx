@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { useFormContext, Controller, useWatch } from "react-hook-form";
+import { useFormContext, Controller } from "react-hook-form";
 
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -26,10 +26,11 @@ function CreateOffer() {
   const {
     control,
     register,
+    watch,
     formState: { errors },
   } = useFormContext<WebsiteFormSchema>();
   const samePriceGrey =
-    useWatch({ control, name: "offers.greyNicheOffer.samePrice" }) || false;
+    watch( "offers.greyNicheOffer.samePrice") || false;
 
   return (
     <div>

@@ -36,27 +36,6 @@ export default function WebsiteTable() {
     pageNumbers.push(i);
   }
 
-  const getPaginationNumbers = () => {
-    const maxPageNumbers = 5;
-    if (totalPages <= maxPageNumbers) return pageNumbers;
-
-    if (currentPage <= 3) {
-      return [1, 2, 3, "...", totalPages];
-    } else if (currentPage >= totalPages - 2) {
-      return [1, "...", totalPages - 2, totalPages - 1, totalPages];
-    } else {
-      return [
-        1,
-        "...",
-        currentPage - 1,
-        currentPage,
-        currentPage + 1,
-        "...",
-        totalPages,
-      ];
-    }
-  };
-
   const handleRowClick = (item: WebsiteFormData) => {
     setSelectedWebsite(item);
     redirect("/my-website/edit-website");
@@ -142,8 +121,8 @@ export default function WebsiteTable() {
                 }
 
                 const isSamePrice =
-                  item.offers?.greyNicheOffer?.samePrice &&
-                  item.offers.greyNicheOffer.price &&
+                  item.offers?.greyNicheOffer?.samePrice === true &&
+                  typeof item.offers?.greyNicheOffer?.price === "number" &&
                   item.offers.greyNicheOffer.price > 0;
 
                 const isGambling =
@@ -354,7 +333,7 @@ export default function WebsiteTable() {
               <ArrowLeft size={10} /> Previous
             </Button>
 
-            {getPaginationNumbers().map((page, index) => (
+            {[...pageNumbers].map((page, index) => (
               <Button
                 key={index}
                 variant="outline"
@@ -363,10 +342,8 @@ export default function WebsiteTable() {
                     setCurrentPage(page);
                   }
                 }}
-                disabled={page === "..." || currentPage === page}
-                className={`px-4 py-2 text-sm rounded-none ${
-                  page === "..." ? "text-gray-400" : "text-gray-800"
-                } ${currentPage === page ? "bg-gray-200" : ""}`}
+                disabled={currentPage === page}
+                className={`px-4 py-2 text-sm rounded-none  ${currentPage === page ? "bg-gray-200" : ""}`}
               >
                 {page}
               </Button>
