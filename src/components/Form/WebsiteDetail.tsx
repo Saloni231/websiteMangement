@@ -79,10 +79,10 @@ function WebsiteDetail() {
   }, [countries]);
 
   const handleSelect = (category: string) => {
-    const current = watch("categories") || [];
-    const updated = current.includes(category)
-      ? current.filter((c: string) => c !== category)
-      : [...current, category];
+    const updated = selectedCategory.includes(category)
+      ? selectedCategory.filter((c) => c !== category)
+      : [...selectedCategory, category];
+
     setValue("categories", updated);
   };
 
